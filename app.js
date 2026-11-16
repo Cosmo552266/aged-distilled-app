@@ -1450,7 +1450,7 @@
     fbrate: function (d) { ui.fb.rate = ui.fb.rate === d.r ? '' : d.r; render(); },
     fbsend: function () {
       var f = ui.fb; if (!f || (!f.rate && !f.text.trim())) return;
-      state.feedback.unshift({ t: Date.now(), rate: f.rate, text: f.text.trim().slice(0, 300), table: state.table || '', mode: state.mode });
+      state.feedback.unshift({ t: Date.now(), rate: f.rate, text: f.text.trim().slice(0, 300), table: state.table || '', mode: state.mode }); try { if (window.AD_CLOUD && window.AD_CLOUD.feedback) window.AD_CLOUD.feedback({ rating: f.rate || null, message: f.text.trim().slice(0, 300), mode: state.mode || null, screen: ui.back || null }); } catch (e) { /* cloud optional */ }
       state.feedback = state.feedback.slice(0, 300); ev('fb'); save(); ui.fb = { rate: '', text: '', done: true }; render(); window.scrollTo(0, 0);
     },
     fbdel: function (d) { state.feedback.splice(Number(d.i), 1); save(); render(); },

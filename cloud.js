@@ -173,7 +173,13 @@
     });
   }
 
-  window.AD_CLOUD = { push: push, status: function () { return status; }, venue: function () { return venue; } };
+  function feedback(f) {
+    if (!sb || !venue) return;
+    var dev = window.innerWidth >= 900 ? 'ipad' : 'phone';
+    sb.from('feedback').insert({ venue_id: venue.id, rating: f.rating ? String(f.rating).slice(0, 40) : null, message: String(f.message || '').slice(0, 300), mode: f.mode ? String(f.mode).slice(0, 20) : null, screen: f.screen ? String(f.screen).slice(0, 40) : null, device: dev })
+      .then(function (r) { if (r.error) { try { console.warn('Feedback not sent', r.error.message); } catch (e) { /* ignore */ } } });
+  }
+  window.AD_CLOUD = { push: push, feedback: feedback, status: function () { return status; }, venue: function () { return venue; } };
   window.addEventListener('hashchange', function () { setTimeout(show, 50); });
   document.addEventListener('click', function () { setTimeout(show, 50); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(start, 0); }); else setTimeout(start, 0);
