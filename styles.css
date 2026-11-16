@@ -787,3 +787,14 @@ html[data-accent="ivory"][data-theme="day"]:not([data-mode="zero"]) { --brand: #
 .mix { gap: 8px; padding: 14px 16px 8px; } .mix__stage { height: 37%; } .mix__steps { gap: 2px; } .mix__steps small { display: inline; margin-left: 6px; } .mix__steps li { line-height: 17px; }
 .gal__main--anim .gal__nav { top: 22%; }
 .mix__glass--tall { width: 84px; height: 150px; border-radius: 0 0 10px 10px; } .mix__glass--tall .mix__liq { height: 86%; border-radius: 0 0 7px 7px; } .mix__glass--wine { width: 120px; height: 110px; border-radius: 0 0 60px 60px / 0 0 90px 90px; } .mix__glass--wine .mix__liq { height: 62%; border-radius: 0 0 60px 60px / 0 0 68px 68px; } .mix__glass--wine + .mix__stem { height: 34px; }
+
+/* Phone: taste and grape chips sit in one row that scrolls sideways, so the list starts higher up the screen. */
+.tastebar .q-short { display: none; }
+@media (max-width: 720px) {
+  .tastebar { gap: 6px; margin: 2px 0 10px; }
+  .tastebar .q-long { display: none; }
+  .tastebar .q-short { display: inline; }
+  .tastebar .we-chips { flex-wrap: nowrap; overflow-x: auto; gap: 8px; margin-right: -20px; padding: 2px 20px 6px 0; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .tastebar .we-chips::-webkit-scrollbar { display: none; }
+  .tastebar .we-chip { flex: 0 0 auto; white-space: nowrap; min-height: 44px; padding: 0 14px; font-size: 15px; scroll-snap-align: start; }
+}

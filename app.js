@@ -481,7 +481,7 @@
     if (grapes.length >= 2) swL = [(first.cat === 'sparkling' || first.cat === 'fortified') ? 'By type' : 'By grape', 'By style'];
     var sw = swL ? '<div class="seg bysw" role="group" aria-label="How to browse"><button class="seg__b" aria-pressed="' + byGrape + '" data-act="by" data-b="grape">' + swL[0] + '</button><button class="seg__b" aria-pressed="' + !byGrape + '" data-act="by" data-b="style">' + swL[1] + '</button></div>' : '';
     if (have.length < 2 && !sw) return { html: '', items: items, cur: null };
-    return { cur: cur, items: cur ? cur.list : items, html: '<div class="tastebar">' + sw + '<span class="eyebrow muted">' + q + '</span><div class="we-chips" role="group" aria-label="' + q + '">' + have.map(function (t) { return '<button class="we-chip" aria-pressed="' + (cur === t) + '" data-act="taste" data-k="' + esc(t.k) + '">' + esc(t.label) + ' · ' + t.list.length + '</button>'; }).join('') + '</div></div>' };
+    return { cur: cur, items: cur ? cur.list : items, html: '<div class="tastebar">' + sw + '<span class="eyebrow muted"><span class="q-long">' + q + '</span><span class="q-short">' + q.split(' and ')[0] + ' · swipe for more</span></span><div class="we-chips" role="group" aria-label="' + q + '">' + have.map(function (t) { return '<button class="we-chip" aria-pressed="' + (cur === t) + '" data-act="taste" data-k="' + esc(t.k) + '">' + esc(t.label) + ' · ' + t.list.length + '</button>'; }).join('') + '</div></div>' };
   }
   function miniBars(d) {
     if (!(d.cat === 'cocktail' || d.cat === 'zero')) return '';
