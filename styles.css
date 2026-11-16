@@ -798,3 +798,15 @@ html[data-accent="ivory"][data-theme="day"]:not([data-mode="zero"]) { --brand: #
   .tastebar .we-chips::-webkit-scrollbar { display: none; }
   .tastebar .we-chip { flex: 0 0 auto; white-space: nowrap; min-height: 44px; padding: 0 14px; font-size: 15px; scroll-snap-align: start; }
 }
+
+/* Welcome: say what this is and how to use it. */
+.hero__kind { margin: 10px 0 0; font: 500 13px/18px var(--font-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink, var(--brand, var(--ink))); text-align: center; }
+.howto { list-style: none; display: flex; justify-content: center; gap: 12px; margin: 14px auto 4px; padding: 0; max-width: 760px; }
+.howto li { flex: 1 1 0; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--line, rgba(0,0,0,.12)); border-radius: 14px; background: var(--surface, rgba(255,255,255,.6)); font: 400 15px/20px var(--font-sans); color: var(--ink); text-align: left; }
+.howto b { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font: 600 13px/1 var(--font-sans); background: var(--accent-ink, var(--brand, var(--ink))); color: var(--surface, #fff); }
+@media (max-width: 720px) {
+  .hero__kind { font-size: 12px; margin-top: 6px; }
+  .howto { gap: 6px; margin-top: 10px; }
+  .howto li { flex-direction: column; gap: 6px; padding: 8px 6px; font-size: 12.5px; line-height: 16px; text-align: center; }
+  .howto b { width: 22px; height: 22px; font-size: 12px; }
+}
