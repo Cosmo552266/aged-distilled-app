@@ -1,0 +1,81 @@
+/* Aged & Distilled — Marble theme. Same app, new skin.
+   Day = Calacatta Oro (white marble, grey + gold veins). Night = Nero Marquina (black marble, white + gold veins).
+   Brass inlay replaces flat gold: hairline borders, brushed-brass buttons. */
+:root, [data-theme="night"] {
+  --bg: #131214;
+  --marble: url("assets/marble-nero.jpg");
+  --surface: rgba(26, 24, 27, 0.80);
+  --surface-raised: rgba(44, 40, 43, 0.90);
+  --line: rgba(216, 182, 106, 0.30);
+  --ink: #F3EEE6;
+  --ink-muted: #ABA29B;
+  --brand: #D8B66A;
+  --brand-ink: #DDBE78;
+  --on-brand: #141214;
+  --brass: linear-gradient(135deg, #F0D99E 0%, #C9A257 38%, #EAD08E 62%, #B48D45 100%);
+  --vein-glow: rgba(255,255,255,0.06);
+  --shadow-card: 0 1px 0 rgba(255,255,255,.05) inset, 0 12px 30px rgba(0,0,0,0.5);
+}
+[data-theme="day"] {
+  --bg: #F1EDE6;
+  --marble: url("assets/marble-calacatta.jpg");
+  --surface: rgba(252, 250, 246, 0.84);
+  --surface-raised: rgba(233, 227, 217, 0.92);
+  --line: rgba(160, 128, 66, 0.38);
+  --ink: #1E1B19;
+  --ink-muted: #625A53;
+  --brand: #B8924A;
+  --brand-ink: #7A5A16;
+  --on-brand: #1E1B19;
+  --focus: #7A5A16;
+  --brass: linear-gradient(135deg, #E9D39A 0%, #C29A50 38%, #E4C885 62%, #B08840 100%);
+  --vein-glow: rgba(255,255,255,0.65);
+  --shadow-card: 0 1px 0 rgba(255,255,255,.9) inset, 0 10px 28px rgba(70,55,35,0.12);
+  --shadow-bottle: 0 18px 24px -14px rgba(60,40,30,0.35);
+}
+/* the slab: fixed behind everything (works on iPad, unlike background-attachment: fixed) */
+html { background-color: var(--bg); }
+html, body { background: var(--bg); }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(120% 80% at 20% 0%, var(--vein-glow), transparent 60%), var(--marble) center / cover no-repeat, var(--bg); }
+.we-screen, #app { background: transparent; }
+.paper, .ppages { /* printed menus stay on paper */ }
+
+/* polished stone cards with a brass inlay edge */
+.we-card, .we-entry, .we-note, .we-rec, .we-help, .we-dial, .pick, .special, .short__row, .panel, .stat, .sgroup, .choose__res, .detail__photo:not(.detail__photo--gal), .pin__key:not(.pin__key--t) {
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+  -webkit-backdrop-filter: blur(2px) saturate(1.05); backdrop-filter: blur(2px) saturate(1.05);
+}
+.we-entry { position: relative; overflow: hidden; }
+.we-entry::after { content: ""; position: absolute; left: 24px; right: 24px; top: 0; height: 2px; background: var(--brass); opacity: .75; }
+.entries--grid .we-entry::after, .entries--six .we-entry::after { left: 16px; right: 16px; }
+.we-entry:hover, .card:hover, .pick:hover { border-color: var(--brand); }
+
+/* brushed brass for every gold fill */
+.we-btn--primary, .seg__b[aria-pressed="true"], .we-dial__stop[aria-pressed="true"], .pin__dot.is-on {
+  background: var(--brass); color: var(--on-brand); border-color: transparent;
+  box-shadow: 0 1px 0 rgba(255,255,255,.45) inset, 0 4px 14px rgba(150,110,40,.25);
+}
+.we-dial__needle, .we-dial__hub { background: var(--brass); }
+.we-tabs, .seg { border: 1px solid var(--line); }
+.we-btn--secondary { border-color: var(--line); background: var(--surface); }
+.we-chip { border-color: var(--line); background: var(--surface); }
+.we-chip[aria-pressed="true"] { border-color: var(--brand); }
+
+/* type: a touch more engraved */
+.eyebrow, .we-eyebrow, .we-entry__count, .label { letter-spacing: .16em; }
+.title, .we-entry__name, .hero__name { letter-spacing: .01em; }
+.hero__line { position: relative; padding: 0 64px; }
+.hero__line::before, .hero__line::after { content: ""; position: absolute; top: 50%; width: 44px; height: 1px; background: var(--brass); }
+.hero__line::before { left: 0; } .hero__line::after { right: 0; }
+.foot { border-top: 1px solid var(--line); padding-top: 14px; }
+
+/* inputs read as inset stone */
+.fld input, .fld select, .fld textarea, .we-admin input, .search { border-color: var(--line); background: var(--surface); }
+.we-admin td { background: var(--surface); }
+.scrim { background: rgba(10, 9, 10, .55); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+
+@media (max-width: 720px) {
+  .hero__line { padding: 0 40px; } .hero__line::before, .hero__line::after { width: 28px; }
+}
