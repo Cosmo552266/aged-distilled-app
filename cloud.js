@@ -48,7 +48,7 @@
       var msg = function (t, ok) { var m = box.querySelector('#ad-msg'); m.style.color = ok ? '#2f5a2f' : '#7a2e2e'; m.textContent = t; };
       var vals = function () { return { email: box.querySelector('#ad-em').value.trim(), password: box.querySelector('#ad-pw').value }; };
       si.onclick = function () { var v = vals(); if (!v.email || !v.password) return msg('Type your email and password.'); msg('Signing in…', true); sb.auth.signInWithPassword(v).then(function (r) { if (r.error) msg(r.error.message); else { box.remove(); box = null; } }); };
-      su.onclick = function () { var v = vals(); if (!v.email || v.password.length < 8) return msg('Use your email and a password of at least 8 characters.'); msg('Creating…', true); sb.auth.signUp(v).then(function (r) { if (r.error) msg(r.error.message); else msg(r.data && r.data.session ? 'Account made. Ask Aged & Distilled to add you to this venue.' : 'Check your email to confirm, then sign in. Then ask Aged & Distilled to add you to this venue.', true); }); };
+      su.onclick = function () { var v = vals(); if (!v.email || v.password.length < 8) return msg('Use your email and a password of at least 8 characters.'); msg('Creating…', true); sb.auth.signUp({ email: v.email, password: v.password, options: { emailRedirectTo: location.origin + location.pathname + location.search } }).then(function (r) { if (r.error) msg(r.error.message); else msg(r.data && r.data.session ? 'Account made. Ask Aged & Distilled to add you to this venue.' : 'Check your email to confirm, then sign in. Then ask Aged & Distilled to add you to this venue.', true); }); };
       row.appendChild(si); row.appendChild(su); box.appendChild(row);
     }
     document.body.appendChild(box);
